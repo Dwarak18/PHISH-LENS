@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Cross-Language Phishing Detection</h1>
+        <form action="/" method="post" id="phishingForm">
+            <label for="emailText">Phishing Message <span style="color:red">*</span>:</label>
+            <textarea id="emailText" name="emailText" rows="5" placeholder="Enter the suspicious message here..." required></textarea>
+            <label for="url">URL (optional):</label>
+            <input type="url" id="url" name="url" placeholder="Paste a suspicious link (optional)">
+            <button type="submit">Check for Phishing</button>
+        </form>
+        {% if result is not none %}
+            <div class="result">
+                {% if result|string == '1' %}
+                    <h2>Result: <span style="color:red">Phishing</span></h2>
+                {% elif result|string == '0' %}
+                    <h2>Result: <span style="color:green">Legitimate</span></h2>
+                {% else %}
+                    <h2>Result: <span style="color:gray">Unknown</span></h2>
+                {% endif %}
+                {% if language %}
+                    <h3>Detected Language: <span style="color:#31708f">{{ language }}</span></h3>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        document.getElementById('phishingForm').addEventListener('submit', function(e) {
+            var msg = document.getElementById('emailText').value.trim();
+            if (!msg) {
+                alert('Please enter a phishing message to check.');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

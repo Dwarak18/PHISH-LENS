@@ -1,0 +1,10 @@
+python ./crosslang-phishing-detector/src/app/train.py --> train model
+
+python ./crosslang-phishing-detector/src/app/predict.py --text "Votre compte a été compromis. Veuillez vérifier votre identité." --url "http://malicious.fr/verify" --> French
+
+python ./crosslang-phishing-detector/src/app/predict.py --text "あなたのアカウントが危険にさらされています。今すぐ本人確認を行ってください。" --url "http://malicious.jp/verify" --> Japan
+
+python ./crosslang-phishing-detector/src/app/predict.py --text "Ihr Konto wurde kompromittiert. Bitte überprüfen Sie Ihre Identität, um Ihr Konto zu schützen." --url "http://malicious.de/verify" --> German
+
+python ./crosslang-phishing-detector/src/app/predict.py --text "Su cuenta ha sido comprometida. Por favor, verifique su identidad para proteger su cuenta." --url "http://malicioso.es/verificar" --> Spanish
+
